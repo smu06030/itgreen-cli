@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "A versatile CLI tool for ITGreen development tasks",
   "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "exports": {
