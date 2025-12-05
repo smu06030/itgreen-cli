@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/smu06030/itgreen-cli/compare/v1.0.3...v1.1.0) (2025-12-05)
+
+
+### Features
+
+* overhaul README with detailed features, installation, usage, development, architecture, and release process sections. ([203236d](https://github.com/smu06030/itgreen-cli/commit/203236d9b495bc9069acf0ccaaa1b0e2eca0854a))
+
 ## [1.0.3](https://github.com/smu06030/itgreen-cli/compare/v1.0.2...v1.0.3) (2025-12-05)
 
 
