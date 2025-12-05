@@ -35,6 +35,7 @@ export async function convertToWebp(
     mkdirSync(outputPath, { recursive: true });
   }
 
+  // Spinner for progress
   const spinner = ora("Searching for image files...").start();
 
   try {
