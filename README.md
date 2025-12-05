@@ -1,41 +1,48 @@
-# itgreen
+# @smu06030/itgreen-cli
 
-A versatile CLI tool for ITGreen development tasks
+[![npm version](https://img.shields.io/npm/v/@smu06030/itgreen-cli.svg)](https://www.npmjs.com/package/@smu06030/itgreen-cli)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## Overview
+A versatile CLI tool for ITGreen development tasks - streamline your development workflow with powerful automation tools.
 
-`itgreen` is an independent CLI tool designed to boost development productivity. Written in TypeScript, it provides various features like image conversion, code generation, and more.
+## 🌟 Features
 
-## Installation
+- ✅ **WebP Image Conversion**: Convert PNG/JPG images to WebP format with custom quality settings
+- ✅ **Config-based Workflow**: Initialize and manage settings via `.itgreenrc.json`
+- ✅ **Glob Pattern Support**: Include/exclude files using flexible glob patterns
+- ✅ **Dual Module Support**: ESM and CommonJS compatibility
+- ✅ **TypeScript**: Fully typed for better developer experience
 
-### Global Installation via NPM (after publishing)
+## 📦 Installation
+
+### Global Installation (Recommended)
 
 ```bash
-npm install -g @itgreen/cli
+npm install -g @smu06030/itgreen-cli
 ```
 
-### Local Development
+### As a Dev Dependency
 
 ```bash
-git clone <repository-url>
-cd itgreen-cli
-npm install
-npm link
+npm install --save-dev @smu06030/itgreen-cli
 ```
 
-## Usage
+### Using npx (No Installation Required)
 
-### 📸 Convert Images to WebP
+```bash
+npx @smu06030/itgreen-cli init
+npx @smu06030/itgreen-cli convert:webp
+```
 
-Convert PNG, JPG files to WebP format using a config file.
+## 🚀 Quick Start
 
-#### Step 1: Initialize Config File
+### 1. Initialize Configuration
 
 ```bash
 itgreen init
 ```
 
-This creates a `.itgreenrc.json` file in your current directory with default settings:
+This creates a `.itgreenrc.json` file in your project root:
 
 ```json
 {
@@ -49,37 +56,15 @@ This creates a `.itgreenrc.json` file in your current directory with default set
 }
 ```
 
-#### Step 2: Customize Config (Optional)
+### 2. Customize Settings (Optional)
 
-Edit `.itgreenrc.json` to customize your conversion settings:
-
-- `inputPath`: Source directory for images
-- `outputPath`: Destination directory for converted images (defaults to inputPath)
-- `quality`: Conversion quality (1-100, default: 80)
-- `includePatterns`: Glob patterns for files to include
-- `excludePatterns`: Glob patterns for files to exclude
-
-#### Step 3: Run Conversion
-
-```bash
-itgreen convert:webp
-```
-
-**Config Options:**
-
-- `inputPath` (required): Source directory for images
-- `outputPath` (optional): Destination directory (defaults to inputPath)
-- `quality` (1-100): Conversion quality
-- `includePatterns`: Array of glob patterns for files to include
-- `excludePatterns`: Array of glob patterns for files to exclude
-
-**Example Config:**
+Edit `.itgreenrc.json` to match your project structure:
 
 ```json
 {
   "webp": {
-    "inputPath": "public/images",
-    "outputPath": "public/webp",
+    "inputPath": "src/assets/images",
+    "outputPath": "src/assets/webp",
     "quality": 90,
     "includePatterns": ["**/*.{png,jpg,jpeg}"],
     "excludePatterns": ["**/node_modules/**", "**/drafts/**", "**/*.webp"]
@@ -87,11 +72,54 @@ itgreen convert:webp
 }
 ```
 
-## Development
-
-### Run Dev Server
+### 3. Convert Images to WebP
 
 ```bash
+itgreen convert:webp
+```
+
+## 📖 Commands
+
+### `itgreen init`
+
+Initialize a new configuration file (`.itgreenrc.json`) in the current directory.
+
+```bash
+itgreen init
+```
+
+### `itgreen convert:webp`
+
+Convert images to WebP format based on your configuration.
+
+```bash
+itgreen convert:webp
+```
+
+**Configuration Options:**
+
+| Option            | Type       | Required | Default                     | Description                           |
+| ----------------- | ---------- | -------- | --------------------------- | ------------------------------------- |
+| `inputPath`       | `string`   | ✅       | -                           | Source directory containing images    |
+| `outputPath`      | `string`   | ❌       | `inputPath`                 | Destination directory for WebP images |
+| `quality`         | `number`   | ❌       | `80`                        | Conversion quality (1-100)            |
+| `includePatterns` | `string[]` | ❌       | `["*.{png,jpg,jpeg,webp}"]` | Glob patterns for files to include    |
+| `excludePatterns` | `string[]` | ❌       | `["**/node_modules/**"]`    | Glob patterns for files to exclude    |
+
+## 🛠️ Development
+
+### Setup
+
+```bash
+git clone https://github.com/smu06030/itgreen-cli.git
+cd itgreen-cli
+npm install
+```
+
+### Development Mode
+
+```bash
+# Run commands in dev mode
 npm run dev init
 npm run dev convert:webp
 ```
@@ -102,10 +130,10 @@ npm run dev convert:webp
 npm run build
 ```
 
-This generates both ESM and CommonJS builds:
+Generates:
 
-- `dist/index.js` - ES Module
-- `dist/index.cjs` - CommonJS
+- `dist/index.js` - ES Module build
+- `dist/index.cjs` - CommonJS build
 
 ### Type Check
 
@@ -113,38 +141,86 @@ This generates both ESM and CommonJS builds:
 npm run typecheck
 ```
 
-## Commands
+### Link Locally
 
-### Available Commands
+```bash
+npm link
+```
 
-- `init` - Initialize config file
-- `convert:webp` - Convert PNG/JPG → WebP (config-based)
+Now you can use `itgreen` command anywhere on your system during development.
 
-### Future Commands
+## 🏗️ Architecture
 
-- `gen:api` - Generate API functions/types/React Query from Swagger
-- `gen:icon` - Generate Chakra Icon components from SVG
-- `gen:img` - Generate image path objects
-- `gen:font` - Generate Next.js Local Font from font files
-- `gen:route` - Generate route path objects from Pages folder
-- `gen:source` - Generate Page/API templates
+### Tech Stack
 
-## Tech Stack
-
-- **Language**: TypeScript
+- **Language**: TypeScript 5.7+
 - **CLI Framework**: Commander.js
+- **Build Tool**: tsup
 - **Runtime**: Node.js 18+
 - **Module Format**: Dual ESM/CJS support
-- **Key Libraries**:
-  - `webp-converter` - Image conversion
-  - `chalk` - Colored output
-  - `ora` - Loading spinners
-  - `glob` - File pattern matching
+- **CI/CD**: Semantic Release + GitHub Actions
 
-## License
+### Key Dependencies
 
-MIT
+- `commander` - CLI framework
+- `webp-converter` - Image conversion engine
+- `chalk` - Terminal colors
+- `ora` - Progress spinners
+- `glob` - File pattern matching
 
-## Contact
+### Build Configuration
 
-Your Name
+The project uses `tsup` for building with the following setup:
+
+- Dual format output (ESM + CJS)
+- Shebang preservation for CLI
+- No minification for better debugging
+- Clean build directory on each build
+
+## 📝 Release Process
+
+This project uses [Semantic Release](https://semantic-release.gitbook.io/) for automated versioning and publishing:
+
+1. Commits follow [Conventional Commits](https://www.conventionalcommits.org/)
+2. On push to `main`, GitHub Actions:
+   - Analyzes commits
+   - Generates changelog
+   - Creates GitHub release
+   - Publishes to npm
+   - Updates version in package.json
+
+### Commit Convention
+
+```
+feat: add new feature
+fix: bug fix
+docs: documentation changes
+chore: maintenance tasks
+```
+
+## 🗺️ Roadmap
+
+Future commands planned:
+
+- `gen:api` - Generate API functions/types/React Query hooks from Swagger
+- `gen:icon` - Generate Chakra UI Icon components from SVG files
+- `gen:img` - Generate typed image path objects
+- `gen:font` - Generate Next.js Local Font configurations
+- `gen:route` - Generate route path objects from Pages directory
+- `gen:source` - Generate Page/API templates
+
+## 📄 License
+
+MIT © [smu06030](https://github.com/smu06030)
+
+## 🤝 Contributing
+
+Contributions, issues and feature requests are welcome!
+
+Feel free to check [issues page](https://github.com/smu06030/itgreen-cli/issues).
+
+## 🔗 Links
+
+- [npm Package](https://www.npmjs.com/package/@smu06030/itgreen-cli)
+- [GitHub Repository](https://github.com/smu06030/itgreen-cli)
+- [Changelog](./CHANGELOG.md)
