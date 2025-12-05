@@ -1,3 +1,10 @@
+## [1.0.3](https://github.com/smu06030/itgreen-cli/compare/v1.0.2...v1.0.3) (2025-12-05)
+
+
+### Bug Fixes
+
+* add MIT license file ([9619313](https://github.com/smu06030/itgreen-cli/commit/96193135e7aa9c8e3cd976afbb1147eb6774bb50))
+
 ## [1.0.2](https://github.com/smu06030/itgreen-cli/compare/v1.0.1...v1.0.2) (2025-12-05)
 
 
