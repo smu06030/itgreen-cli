@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/smu06030/itgreen-cli/compare/v1.0.1...v1.0.2) (2025-12-05)
+
+
+### Bug Fixes
+
+* Configure tsup build process via `tsup.config.ts` and simplify `package.json` build script. ([076aa55](https://github.com/smu06030/itgreen-cli/commit/076aa55f1b15e4fbb6fcb47f4c9e2c1f92d0ddbd))
+
 ## [1.0.1](https://github.com/smu06030/itgreen-cli/compare/v1.0.0...v1.0.1) (2025-12-05)
 
 
