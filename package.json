@@ -1,5 +1,5 @@
 {
-  "name": "@itgreen/cli",
+  "name": "@smu06030/itgreen-cli",
   "version": "0.0.1",
   "description": "A versatile CLI tool for ITGreen development tasks",
   "type": "module",
