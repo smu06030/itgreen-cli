@@ -9,21 +9,21 @@ import type {
 const CONFIG_FILE_NAME = ".itgreenrc.json";
 
 /**
- * Get config file path from current working directory
+ * 현재 작업 디렉토리에서 설정 파일 경로 가져오기
  */
 export function getConfigPath(): string {
   return join(process.cwd(), CONFIG_FILE_NAME);
 }
 
 /**
- * Check if config file exists
+ * 설정 파일 존재 여부 확인
  */
 export function configExists(): boolean {
   return existsSync(getConfigPath());
 }
 
 /**
- * Load config file
+ * 설정 파일 로드
  */
 export function loadConfig(): ItgreenConfig {
   const configPath = getConfigPath();
@@ -45,7 +45,7 @@ export function loadConfig(): ItgreenConfig {
 }
 
 /**
- * Save config file
+ * 설정 파일 저장
  */
 export function saveConfig(config: ItgreenConfig): void {
   const configPath = getConfigPath();
@@ -53,7 +53,7 @@ export function saveConfig(config: ItgreenConfig): void {
 }
 
 /**
- * Validate WebP config
+ * WebP 설정 유효성 검증
  */
 export function validateWebpConfig(config: WebpConfig): ConfigValidationResult {
   const errors: string[] = [];
@@ -81,7 +81,7 @@ export function validateWebpConfig(config: WebpConfig): ConfigValidationResult {
 }
 
 /**
- * Create default config
+ * 기본 설정 생성
  */
 export function createDefaultConfig(): ItgreenConfig {
   return {

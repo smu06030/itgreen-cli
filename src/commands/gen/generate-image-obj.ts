@@ -8,7 +8,7 @@ import { flatObject } from "../../utils/object-flattener.js";
 import { toSnakeUpperCase } from "../../utils/format.js";
 import type { GenImgConfig, ImageObject } from "../../types/gen-img.js";
 
-// Default configuration
+// 기본 설정
 const DEFAULT_CONFIG: GenImgConfig = {
   inputPath: "public",
   outputPath: "src/generated/images.ts",
@@ -19,7 +19,7 @@ const DEFAULT_CONFIG: GenImgConfig = {
 };
 
 /**
- * Merges user config with default config
+ * 사용자 설정을 기본 설정과 병합
  */
 function getImageConfig(
   userConfig: Partial<GenImgConfig>
@@ -32,7 +32,7 @@ function getImageConfig(
 }
 
 /**
- * Formats TypeScript code using Prettier
+ * Prettier를 사용하여 TypeScript 코드 포맷팅
  */
 async function prettierString(code: string): Promise<string> {
   return await prettier.format(code, {
@@ -45,12 +45,12 @@ async function prettierString(code: string): Promise<string> {
 }
 
 /**
- * Main function to generate image object TypeScript file
+ * 이미지 객체 TypeScript 파일 생성 메인 함수
  */
 export async function generateImageObj(
   userConfig: Partial<GenImgConfig>
 ): Promise<void> {
-  // 1. Merge configuration with defaults
+  // 1. 기본 설정과 병합
   const config = getImageConfig(userConfig);
   const {
     inputPath,
@@ -62,13 +62,13 @@ export async function generateImageObj(
     formatKey,
   } = config;
 
-  // 2. Check if input directory exists
+  // 2. 입력 디렉토리 존재 여부 확인
   const absoluteInputPath = resolve(process.cwd(), inputPath);
   if (!existsSync(absoluteInputPath)) {
     throw new Error(`Input path does not exist: ${absoluteInputPath}`);
   }
 
-  // 3. Scan files and create nested object structure
+  // 3. 파일 스캔 및 중첩 객체 구조 생성
   const imageObject = convertFilePathToObject(absoluteInputPath, {
     includingPattern,
     ignoredPattern,
@@ -80,12 +80,12 @@ export async function generateImageObj(
     }),
   });
 
-  // 4. Flatten nested object
+  // 4. 중첩 객체 평탄화
   const flattenedObject = flatObject(imageObject, {
     formatKey: (parent, child) => {
       if (!parent) return child;
-      // Both parent and child are already in SNAKE_UPPER_CASE
-      // Just join them with underscore
+      // parent와 child 모두 이미 SNAKE_UPPER_CASE 형식
+      // 언더스코어로 단순 연결
       return `${parent}_${child}`;
     },
     isValueType: (value): value is ImageObject => {
@@ -98,7 +98,7 @@ export async function generateImageObj(
     },
   });
 
-  // 5. Render template using Eta
+  // 5. Eta 템플릿을 사용하여 렌더링
   const eta = new Eta({ autoEscape: false });
   const templateString =
     "export const <%= it.displayName %> = <%= it.imgObject %> as const;";
@@ -108,16 +108,16 @@ export async function generateImageObj(
     displayName,
   });
 
-  // 6. Format with Prettier
+  // 6. Prettier로 포맷팅
   const formattedCode = await prettierString(code);
 
-  // 7. Ensure output directory exists
+  // 7. 출력 디렉토리 존재 확인
   const absoluteOutputPath = resolve(process.cwd(), outputPath);
   const outputDir = dirname(absoluteOutputPath);
   if (!existsSync(outputDir)) {
     mkdirSync(outputDir, { recursive: true });
   }
 
-  // 8. Write to file
+  // 8. 파일 작성
   writeFileSync(absoluteOutputPath, formattedCode, "utf-8");
 }

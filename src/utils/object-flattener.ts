@@ -4,7 +4,7 @@ export interface FlattenOptions {
 }
 
 /**
- * Flattens a nested object structure into a single-level object
+ * 중첩된 객체 구조를 단일 레벨 객체로 평탄화
  */
 export function flatObject(
   obj: Record<string, any>,
@@ -17,10 +17,10 @@ export function flatObject(
       const newKey = options.formatKey(parentKey, key);
 
       if (options.isValueType(value)) {
-        // This is a leaf value, add it to result
+        // 리프 값이므로 결과에 추가
         result[newKey] = value;
       } else if (typeof value === "object" && !Array.isArray(value)) {
-        // This is a nested object, recurse
+        // 중첩 객체이므로 재귀 호출
         flatten(value, newKey);
       }
     }

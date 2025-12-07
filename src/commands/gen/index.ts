@@ -5,13 +5,13 @@ import { loadConfig } from "../../utils/config.js";
 import { generateImageObj } from "./generate-image-obj.js";
 
 /**
- * gen:img command handler
+ * gen:img 명령어 핸들러
  */
 async function genImgAction() {
   const spinner = ora("Generating image paths...").start();
 
   try {
-    // Load configuration
+    // 설정 로드
     const config = await loadConfig();
 
     if (!config.genImg) {
@@ -23,7 +23,7 @@ async function genImgAction() {
       process.exit(1);
     }
 
-    // Generate image object
+    // 이미지 객체 생성
     await generateImageObj(config.genImg);
 
     spinner.succeed(
@@ -39,7 +39,7 @@ async function genImgAction() {
 }
 
 /**
- * Register gen:img command
+ * gen:img 명령어 등록
  */
 export function registerGenCommands(program: Command): void {
   program

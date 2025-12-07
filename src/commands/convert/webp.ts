@@ -7,11 +7,11 @@ import { logger } from "../../utils/logger.js";
 import { dirExists, changeExtension } from "../../utils/file.js";
 import { mkdirSync } from "fs";
 
-// webp-converter setup
+// webp-converter 설정
 webp.grant_permission();
 
 /**
- * Convert PNG/JPG files to WebP format using config
+ * 설정을 사용하여 PNG/JPG 파일을 WebP 형식으로 변환
  */
 export async function convertToWebp(
   config: WebpConfig
@@ -24,13 +24,13 @@ export async function convertToWebp(
     excludePatterns,
   } = config;
 
-  // Check if input directory exists
+  // 입력 디렉토리 존재 여부 확인
   if (!dirExists(inputPath)) {
     logger.error(`Input directory not found: ${inputPath}`);
     process.exit(1);
   }
 
-  // Ensure output directory exists
+  // 출력 디렉토리 존재 확인
   if (!dirExists(outputPath)) {
     mkdirSync(outputPath, { recursive: true });
   }
@@ -38,7 +38,7 @@ export async function convertToWebp(
   const spinner = ora("Searching for image files...").start();
 
   try {
-    // Find files using glob patterns
+    // glob 패턴을 사용하여 파일 찾기
     const allFiles: string[] = [];
 
     for (const pattern of includePatterns) {
@@ -50,7 +50,7 @@ export async function convertToWebp(
       allFiles.push(...files);
     }
 
-    // Remove duplicates
+    // 중복 제거
     const uniqueFiles = [...new Set(allFiles)];
 
     if (uniqueFiles.length === 0) {
@@ -62,7 +62,7 @@ export async function convertToWebp(
 
     const result: ConvertResult = { success: [], failed: [] };
 
-    // Convert each file
+    // 각 파일 변환
     for (let i = 0; i < uniqueFiles.length; i++) {
       const file = uniqueFiles[i];
       const fileName = path.basename(file);
@@ -72,7 +72,7 @@ export async function convertToWebp(
         changeExtension(file, "webp")
       );
 
-      // Ensure output subdirectory exists
+      // 출력 하위 디렉토리 존재 확인
       const outputDir = path.dirname(outputFilePath);
       if (!dirExists(outputDir)) {
         mkdirSync(outputDir, { recursive: true });
@@ -97,7 +97,7 @@ export async function convertToWebp(
       }
     }
 
-    // Summary
+    // 요약
     logger.log("");
     logger.success(
       `✨ Conversion complete: ${result.success.length} succeeded`

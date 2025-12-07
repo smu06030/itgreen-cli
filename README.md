@@ -1,6 +1,7 @@
 # @smu06030/itgreen-cli
 
 [![npm version](https://img.shields.io/npm/v/@smu06030/itgreen-cli.svg)](https://www.npmjs.com/package/@smu06030/itgreen-cli)
+[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/smu06030/itgreen-cli)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A versatile CLI tool for ITGreen development tasks - streamline your development workflow with powerful automation tools.

@@ -1,18 +1,18 @@
 /**
- * Converts a string to SNAKE_UPPER_CASE format
- * Example: "myImageFile" -> "MY_IMAGE_FILE"
+ * 문자열을 SNAKE_UPPER_CASE 형식으로 변환
+ * 예시: "myImageFile" -> "MY_IMAGE_FILE"
  */
 export function toSnakeUpperCase(str: string): string {
   return str
-    .replace(/([A-Z])/g, "_$1") // Add underscore before capitals
-    .replace(/[- ]/g, "_") // Replace spaces and hyphens with underscores
-    .replace(/_+/g, "_") // Replace multiple underscores with single
-    .replace(/^_/, "") // Remove leading underscore
+    .replace(/([A-Z])/g, "_$1") // 대문자 앞에 언더스코어 추가
+    .replace(/[- ]/g, "_") // 공백과 하이픈을 언더스코어로 변경
+    .replace(/_+/g, "_") // 연속된 언더스코어를 하나로 통합
+    .replace(/^_/, "") // 맨 앞 언더스코어 제거
     .toUpperCase();
 }
 
 /**
- * Removes empty objects from a nested object structure
+ * 중첩된 객체 구조에서 빈 객체를 제거
  */
 export function removeEmptyObject<T extends Record<string, any>>(
   obj: T

@@ -13,7 +13,7 @@ export interface ConvertOptions {
 }
 
 /**
- * Checks if a file should be included based on glob patterns
+ * glob 패턴을 기반으로 파일 포함 여부 확인
  */
 function checkFileAccess(options: {
   filename: string;
@@ -23,14 +23,14 @@ function checkFileAccess(options: {
 }): boolean {
   const { filename, basename, ignored, include } = options;
 
-  // Check if file matches any ignored pattern (match against full path)
+  // 제외 패턴과 매칭되는지 확인 (전체 경로 기준)
   for (const pattern of ignored) {
     if (minimatch(filename, pattern, { matchBase: true })) {
       return false;
     }
   }
 
-  // Check if file matches any include pattern (match against basename)
+  // 포함 패턴과 매칭되는지 확인 (파일명 기준)
   for (const pattern of include) {
     if (minimatch(basename, pattern, { matchBase: true })) {
       return true;
@@ -41,7 +41,7 @@ function checkFileAccess(options: {
 }
 
 /**
- * Recursively converts file paths to nested object structure
+ * 파일 경로를 재귀적으로 중첩된 객체 구조로 변환
  */
 export function convertFilePathToObject(
   basePath: string,
@@ -59,17 +59,17 @@ export function convertFilePathToObject(
       const stats = statSync(fullPath);
       const isDirectory = stats.isDirectory();
 
-      // Generate key for this file/directory
+      // 파일/디렉토리의 키 생성
       const key = formatKey
         ? formatKey(parsed.name)
         : toSnakeUpperCase(parsed.name);
 
       if (isDirectory) {
-        // Recursively scan directories
+        // 디렉토리 재귀 스캔
         targetObject[key] = {};
         scan(fullPath, targetObject[key]);
       } else {
-        // Check if file should be included
+        // 파일 포함 여부 확인
         const isAccessible = checkFileAccess({
           filename: fullPath,
           basename: parsed.base,

@@ -12,7 +12,7 @@ export function registerConvertCommands(program: Command): void {
     .command("convert:webp")
     .description("Convert PNG/JPG files to WebP format based on config file")
     .action(async () => {
-      // Check if config exists
+      // 설정 파일 존재 여부 확인
       if (!configExists()) {
         logger.error(
           'Config file not found. Please run "init" command first to create a config file.'
@@ -21,7 +21,7 @@ export function registerConvertCommands(program: Command): void {
       }
 
       try {
-        // Load config
+        // 설정 로드
         const config = loadConfig();
 
         if (!config.webp) {
@@ -29,7 +29,7 @@ export function registerConvertCommands(program: Command): void {
           process.exit(1);
         }
 
-        // Validate config
+        // 설정 유효성 검증
         const validation = validateWebpConfig(config.webp);
         if (!validation.valid) {
           logger.error("Invalid WebP configuration:");
@@ -37,7 +37,7 @@ export function registerConvertCommands(program: Command): void {
           process.exit(1);
         }
 
-        // Execute conversion
+        // 변환 실행
         await convertToWebp(config.webp);
       } catch (error) {
         logger.error(
