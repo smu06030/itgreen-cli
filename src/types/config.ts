@@ -8,6 +8,7 @@ export interface WebpConfig {
 
 export interface ItgreenConfig {
   webp?: WebpConfig;
+  genImg?: Partial<import("./gen-img.js").GenImgConfig>;
 }
 
 export interface ConfigValidationResult {

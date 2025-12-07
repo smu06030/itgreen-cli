@@ -8,6 +8,7 @@ A versatile CLI tool for ITGreen development tasks - streamline your development
 ## 🌟 Features
 
 - ✅ **WebP Image Conversion**: Convert PNG/JPG images to WebP format with custom quality settings
+- ✅ **Image Path Generator**: Automatically generate TypeScript constants from image directories
 - ✅ **Config-based Workflow**: Initialize and manage settings via `.itgreenrc.json`
 - ✅ **Glob Pattern Support**: Include/exclude files using flexible glob patterns
 - ✅ **Dual Module Support**: ESM and CommonJS compatibility
@@ -32,6 +33,7 @@ npm install --save-dev @smu06030/itgreen-cli
 ```bash
 npx @smu06030/itgreen-cli init
 npx @smu06030/itgreen-cli convert:webp
+npx @smu06030/itgreen-cli gen:img
 ```
 
 ## 🚀 Quick Start
@@ -106,6 +108,84 @@ itgreen convert:webp
 | `includePatterns` | `string[]` | ❌       | `["*.{png,jpg,jpeg,webp}"]` | Glob patterns for files to include    |
 | `excludePatterns` | `string[]` | ❌       | `["**/node_modules/**"]`    | Glob patterns for files to exclude    |
 
+### `itgreen gen:img`
+
+Generate TypeScript image path constants from a directory structure for type-safe image references.
+
+```bash
+itgreen gen:img
+```
+
+**Configuration Options:**
+
+Add a `genImg` section to your `.itgreenrc.json`:
+
+```json
+{
+  "genImg": {
+    "inputPath": "public",
+    "outputPath": "src/generated/images.ts",
+    "displayName": "IMAGES",
+    "basePath": "/",
+    "includingPattern": ["*.jpg", "*.png", "*.svg", "*.jpeg", "*.webp"],
+    "ignoredPattern": ["*node_module*"]
+  }
+}
+```
+
+| Option             | Type       | Required | Default                                       | Description                               |
+| ------------------ | ---------- | -------- | --------------------------------------------- | ----------------------------------------- |
+| `inputPath`        | `string`   | ❌       | `"public"`                                    | Directory to scan for images              |
+| `outputPath`       | `string`   | ❌       | `"src/generated/images.ts"`                   | Output file path for generated TypeScript |
+| `displayName`      | `string`   | ❌       | `"IMAGES"`                                    | Name of the exported constant             |
+| `basePath`         | `string`   | ❌       | `"/"`                                         | Base path prepended to image URLs         |
+| `includingPattern` | `string[]` | ❌       | `["*.jpg","*.png","*.svg","*.jpeg","*.webp"]` | Glob patterns for image files to include  |
+| `ignoredPattern`   | `string[]` | ❌       | `["*node_module*"]`                           | Glob patterns for directories to exclude  |
+
+**Example Output:**
+
+Given this directory structure:
+
+```
+public/
+  └── images/
+      ├── logo.png
+      └── icons/
+          └── search.svg
+```
+
+Running `itgreen gen:img` generates:
+
+```typescript
+export const IMAGES = {
+  IMAGES_LOGO: {
+    src: "/images/logo.png",
+    alt: "logo",
+  },
+  IMAGES_ICONS_SEARCH: {
+    src: "/images/icons/search.svg",
+    alt: "icons-search",
+  },
+} as const;
+```
+
+**Usage in Your Code:**
+
+```typescript
+import { IMAGES } from "@/generated/images";
+
+function Logo() {
+  return <img src={IMAGES.IMAGES_LOGO.src} alt={IMAGES.IMAGES_LOGO.alt} />;
+}
+```
+
+**Benefits:**
+
+- ✅ Type-safe image paths with autocomplete
+- ✅ Compile-time error checking for missing images
+- ✅ Automatic alt text generation
+- ✅ Refactoring support - rename/move images safely
+
 ## 🛠️ Development
 
 ### Setup
@@ -167,6 +247,9 @@ Now you can use `itgreen` command anywhere on your system during development.
 - `chalk` - Terminal colors
 - `ora` - Progress spinners
 - `glob` - File pattern matching
+- `eta` - Template engine for code generation
+- `prettier` - Code formatting
+- `minimatch` - Glob pattern matching
 
 ### Build Configuration
 
@@ -204,7 +287,6 @@ Future commands planned:
 
 - `gen:api` - Generate API functions/types/React Query hooks from Swagger
 - `gen:icon` - Generate Chakra UI Icon components from SVG files
-- `gen:img` - Generate typed image path objects
 - `gen:font` - Generate Next.js Local Font configurations
 - `gen:route` - Generate route path objects from Pages directory
 - `gen:source` - Generate Page/API templates

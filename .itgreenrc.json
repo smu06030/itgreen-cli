@@ -5,5 +5,13 @@
     "quality": 80,
     "includePatterns": ["*.{png,jpg,jpeg,webp,PNG,JPG,JPEG,WEBP}"],
     "excludePatterns": ["**/node_modules/**"]
+  },
+  "genImg": {
+    "inputPath": "test-images",
+    "outputPath": "test-output/images.ts",
+    "displayName": "TEST_IMAGES",
+    "basePath": "/",
+    "includingPattern": ["*.jpg", "*.png", "*.svg", "*.jpeg", "*.webp"],
+    "ignoredPattern": ["*node_module*"]
   }
 }
