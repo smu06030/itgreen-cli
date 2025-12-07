@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/smu06030/itgreen-cli/compare/v1.1.0...v1.2.0) (2025-12-07)
+
+
+### Features
+
+* implement `gen:img` command to generate TypeScript image path constants from image files. ([d3cdfdf](https://github.com/smu06030/itgreen-cli/commit/d3cdfdf44441f640007e59066ce4522aa7f03217))
+
 # [1.1.0](https://github.com/smu06030/itgreen-cli/compare/v1.0.3...v1.1.0) (2025-12-05)
 
 
