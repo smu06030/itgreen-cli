@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/smu06030/itgreen-cli/compare/v1.8.0...v1.9.0) (2026-01-19)
+
+
+### Features
+
+* Add `_document.tsx` and `_app.tsx` to the list of excluded files. ([38c6883](https://github.com/smu06030/itgreen-cli/commit/38c688357c64f1b2aee0e989048ad24f54f1ca6e))
+
 # [1.8.0](https://github.com/smu06030/itgreen-cli/compare/v1.7.0...v1.8.0) (2026-01-19)
 
 
