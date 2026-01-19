@@ -92,5 +92,26 @@ export function createDefaultConfig(): ItgreenConfig {
       includePatterns: ["*.{png,jpg,jpeg,webp,PNG,JPG,JPEG,WEBP}"],
       excludePatterns: ["**/node_modules/**"],
     },
+    genImg: {
+      inputPath: "public/images",
+      outputPath: "src/generated/path/images.ts",
+      displayName: "IMAGES",
+      basePath: "/",
+      includingPattern: ["*.jpg", "*.png", "*.svg", "*.jpeg", "*.webp"],
+      ignoredPattern: ["**/node_modules/**"],
+    },
+    genRoute: {
+      inputPath: "src/pages",
+      outputPath: "src/generated/path/routes.ts",
+      displayName: "ROUTES",
+      ignoredPattern: [
+        "layout.tsx",
+        "loading.tsx",
+        "error.tsx",
+        "not-found.tsx",
+        "template.tsx",
+      ],
+      includingPattern: ["**/*.tsx"],
+    },
   };
 }

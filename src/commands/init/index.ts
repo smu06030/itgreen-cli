@@ -12,17 +12,14 @@ export function registerInitCommands(program: Command): void {
   program
     .command("init")
     .description("Initialize config file for the CLI")
-    .option("-f, --force", "Overwrite existing config file", false)
-    .action(async (options) => {
+    .action(async () => {
       const spinner = ora("Creating config file...").start();
 
       try {
         const configPath = getConfigPath();
 
-        if (configExists() && !options.force) {
-          spinner.warn("Config file already exists. Use --force to overwrite.");
-          logger.log(`Config file location: ${configPath}`);
-          return;
+        if (configExists()) {
+          spinner.warn("Config file already exists. Overwriting...");
         }
 
         const config = createDefaultConfig();
