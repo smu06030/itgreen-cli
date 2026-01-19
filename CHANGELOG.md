@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/smu06030/itgreen-cli/compare/v1.7.0...v1.8.0) (2026-01-19)
+
+
+### Features
+
+* Update default paths, display names, and glob patterns for webp, image generation, and route generation configurations. ([bcd9388](https://github.com/smu06030/itgreen-cli/commit/bcd9388ec269043b0b52552fd41cdc74a74a6304))
+
 # [1.7.0](https://github.com/smu06030/itgreen-cli/compare/v1.6.0...v1.7.0) (2026-01-19)
 
 
