@@ -8,10 +8,10 @@
 
 ## ✨ 주요 기능
 
-- 🖼️ **이미지 변환**: PNG/JPG를 WebP로 일괄 변환
-- 📁 **이미지 상수 생성**: 디렉토리의 이미지 파일을 TypeScript 상수로 자동 생성
-- 🛣️ **라우트 상수 생성**: Next.js Page Router와 App Router의 경로를 TypeScript 상수로 자동 생성
-- ⚙️ **설정 관리**: `.itgreenrc.json`을 통한 프로젝트별 설정
+- 🖼️ **이미지 변환**: PNG/JPG를 WebP로 일괄 변환.
+- 📁 **이미지 상수 생성**: 디렉토리의 이미지 파일을 TypeScript 상수로 자동 생성.
+- 🛣️ **라우트 상수 생성**: Next.js Page Router와 App Router의 경로를 TypeScript 상수로 자동 생성.
+- ⚙️ **설정 관리**: `.itgreenrc.json`을 통한 프로젝트별 설정.
 
 ## 📦 설치
 
