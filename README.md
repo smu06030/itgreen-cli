@@ -1,51 +1,75 @@
-# @smu06030/itgreen-cli
+# ITGreen CLI
+
+> Next.js 개발을 위한 다목적 CLI 도구
 
 [![npm version](https://img.shields.io/npm/v/@smu06030/itgreen-cli.svg)](https://www.npmjs.com/package/@smu06030/itgreen-cli)
 [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/smu06030/itgreen-cli)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-A versatile CLI tool for ITGreen development tasks - streamline your development workflow with powerful automation tools.
+## ✨ 주요 기능
 
-## 🌟 Features
+- 🖼️ **이미지 변환**: PNG/JPG를 WebP로 일괄 변환
+- 📁 **이미지 상수 생성**: 디렉토리의 이미지 파일을 TypeScript 상수로 자동 생성
+- 🛣️ **라우트 상수 생성**: Next.js Page Router와 App Router의 경로를 TypeScript 상수로 자동 생성
+- ⚙️ **설정 관리**: `.itgreenrc.json`을 통한 프로젝트별 설정
 
-- ✅ **WebP Image Conversion**: Convert PNG/JPG images to WebP format with custom quality settings
-- ✅ **Image Path Generator**: Automatically generate TypeScript constants from image directories
-- ✅ **Config-based Workflow**: Initialize and manage settings via `.itgreenrc.json`
-- ✅ **Glob Pattern Support**: Include/exclude files using flexible glob patterns
-- ✅ **Dual Module Support**: ESM and CommonJS compatibility
-- ✅ **TypeScript**: Fully typed for better developer experience
-
-## 📦 Installation
-
-### Global Installation (Recommended)
+## 📦 설치
 
 ```bash
 npm install -g @smu06030/itgreen-cli
 ```
 
-### As a Dev Dependency
+또는 프로젝트별 설치:
 
 ```bash
 npm install --save-dev @smu06030/itgreen-cli
 ```
 
-### Using npx (No Installation Required)
+## 🚀 빠른 시작
 
-```bash
-npx @smu06030/itgreen-cli init
-npx @smu06030/itgreen-cli convert:webp
-npx @smu06030/itgreen-cli gen:img
-```
-
-## 🚀 Quick Start
-
-### 1. Initialize Configuration
+### 1. 설정 파일 생성
 
 ```bash
 itgreen init
 ```
 
-This creates a `.itgreenrc.json` file in your project root:
+### 2. 이미지를 WebP로 변환
+
+```bash
+itgreen convert:webp
+```
+
+### 3. 이미지 경로 상수 생성
+
+```bash
+itgreen gen:img
+```
+
+### 4. 라우트 경로 상수 생성
+
+```bash
+itgreen gen:route
+```
+
+## 📋 명령어
+
+### `init`
+
+설정 파일 `.itgreenrc.json`을 생성합니다.
+
+```bash
+itgreen init
+```
+
+### `convert:webp`
+
+PNG/JPG 파일을 WebP 형식으로 변환합니다.
+
+```bash
+itgreen convert:webp
+```
+
+**설정 예시** (`.itgreenrc.json`):
 
 ```json
 {
@@ -53,257 +77,108 @@ This creates a `.itgreenrc.json` file in your project root:
     "inputPath": "public/images",
     "outputPath": "public/webp",
     "quality": 80,
-    "includePatterns": ["*.{png,jpg,jpeg,webp,PNG,JPG,JPEG,WEBP}"],
+    "includePatterns": ["*.{png,jpg,jpeg}"],
     "excludePatterns": ["**/node_modules/**"]
   }
 }
 ```
 
-### 2. Customize Settings (Optional)
+### `gen:img`
 
-Edit `.itgreenrc.json` to match your project structure:
-
-```json
-{
-  "webp": {
-    "inputPath": "src/assets/images",
-    "outputPath": "src/assets/webp",
-    "quality": 90,
-    "includePatterns": ["**/*.{png,jpg,jpeg}"],
-    "excludePatterns": ["**/node_modules/**", "**/drafts/**", "**/*.webp"]
-  }
-}
-```
-
-### 3. Convert Images to WebP
-
-```bash
-itgreen convert:webp
-```
-
-## 📖 Commands
-
-### `itgreen init`
-
-Initialize a new configuration file (`.itgreenrc.json`) in the current directory.
-
-```bash
-itgreen init
-```
-
-### `itgreen convert:webp`
-
-Convert images to WebP format based on your configuration.
-
-```bash
-itgreen convert:webp
-```
-
-**Configuration Options:**
-
-| Option            | Type       | Required | Default                     | Description                           |
-| ----------------- | ---------- | -------- | --------------------------- | ------------------------------------- |
-| `inputPath`       | `string`   | ✅       | -                           | Source directory containing images    |
-| `outputPath`      | `string`   | ❌       | `inputPath`                 | Destination directory for WebP images |
-| `quality`         | `number`   | ❌       | `80`                        | Conversion quality (1-100)            |
-| `includePatterns` | `string[]` | ❌       | `["*.{png,jpg,jpeg,webp}"]` | Glob patterns for files to include    |
-| `excludePatterns` | `string[]` | ❌       | `["**/node_modules/**"]`    | Glob patterns for files to exclude    |
-
-### `itgreen gen:img`
-
-Generate TypeScript image path constants from a directory structure for type-safe image references.
+디렉토리의 이미지 파일을 스캔하여 TypeScript 경로 상수를 생성합니다.
 
 ```bash
 itgreen gen:img
 ```
 
-**Configuration Options:**
-
-Add a `genImg` section to your `.itgreenrc.json`:
+**설정 예시**:
 
 ```json
 {
   "genImg": {
-    "inputPath": "public",
-    "outputPath": "src/generated/images.ts",
+    "inputPath": "public/images",
+    "outputPath": "src/generated/path/images.ts",
     "displayName": "IMAGES",
     "basePath": "/",
-    "includingPattern": ["*.jpg", "*.png", "*.svg", "*.jpeg", "*.webp"],
-    "ignoredPattern": ["*node_module*"]
+    "includingPattern": ["*.jpg", "*.png", "*.svg", "*.webp"],
+    "ignoredPattern": ["**/node_modules/**"]
   }
 }
 ```
 
-| Option             | Type       | Required | Default                                       | Description                               |
-| ------------------ | ---------- | -------- | --------------------------------------------- | ----------------------------------------- |
-| `inputPath`        | `string`   | ❌       | `"public"`                                    | Directory to scan for images              |
-| `outputPath`       | `string`   | ❌       | `"src/generated/images.ts"`                   | Output file path for generated TypeScript |
-| `displayName`      | `string`   | ❌       | `"IMAGES"`                                    | Name of the exported constant             |
-| `basePath`         | `string`   | ❌       | `"/"`                                         | Base path prepended to image URLs         |
-| `includingPattern` | `string[]` | ❌       | `["*.jpg","*.png","*.svg","*.jpeg","*.webp"]` | Glob patterns for image files to include  |
-| `ignoredPattern`   | `string[]` | ❌       | `["*node_module*"]`                           | Glob patterns for directories to exclude  |
-
-**Example Output:**
-
-Given this directory structure:
-
-```
-public/
-  └── images/
-      ├── logo.png
-      └── icons/
-          └── search.svg
-```
-
-Running `itgreen gen:img` generates:
+**생성되는 파일**:
 
 ```typescript
 export const IMAGES = {
-  IMAGES_LOGO: {
-    src: "/images/logo.png",
-    alt: "logo",
-  },
-  IMAGES_ICONS_SEARCH: {
-    src: "/images/icons/search.svg",
-    alt: "icons-search",
-  },
+  LOGO: { src: "/logo.png", alt: "logo" },
+  BANNER: { src: "/banner.jpg", alt: "banner" },
 } as const;
 ```
 
-**Usage in Your Code:**
+### `gen:route`
 
-```typescript
-import { IMAGES } from "@/generated/images";
+Next.js 페이지 파일을 스캔하여 라우트 경로 상수를 생성합니다. Page Router와 App Router 모두 지원합니다.
 
-function Logo() {
-  return <img src={IMAGES.IMAGES_LOGO.src} alt={IMAGES.IMAGES_LOGO.alt} />;
+```bash
+itgreen gen:route
+```
+
+**설정 예시 (Page Router)**:
+
+```json
+{
+  "genRoute": {
+    "inputPath": "src/pages",
+    "outputPath": "src/generated/path/routes.ts",
+    "displayName": "ROUTES",
+    "ignoredPattern": ["_app.tsx", "_document.tsx", "_error.tsx", "api/**"],
+    "includingPattern": ["*.tsx", "*.ts"]
+  }
 }
 ```
 
-**Benefits:**
+**설정 예시 (App Router)**:
 
-- ✅ Type-safe image paths with autocomplete
-- ✅ Compile-time error checking for missing images
-- ✅ Automatic alt text generation
-- ✅ Refactoring support - rename/move images safely
-
-## 🛠️ Development
-
-### Setup
-
-```bash
-git clone https://github.com/smu06030/itgreen-cli.git
-cd itgreen-cli
-npm install
+```json
+{
+  "genRoute": {
+    "inputPath": "src/app",
+    "outputPath": "src/generated/path/routes.ts",
+    "displayName": "ROUTES",
+    "ignoredPattern": ["layout.tsx", "loading.tsx", "error.tsx"],
+    "includingPattern": ["**/page.tsx"]
+  }
+}
 ```
 
-### Development Mode
+**생성되는 파일**:
 
-```bash
-# Run commands in dev mode
-npm run dev init
-npm run dev convert:webp
+```typescript
+export const ROUTES = {
+  MAIN: "/",
+  ABOUT: "/about",
+  BLOG: "/blog",
+  BLOG_BY_ID: "/blog/[id]",
+  USER_BY_USER_ID_PROFILE: "/user/[userId]/profile",
+} as const;
 ```
 
-### Build
+**사용 예시**:
 
-```bash
-npm run build
+```typescript
+import { ROUTES } from "@/generated/path/routes";
+
+// 타입 안전한 라우팅
+router.push(ROUTES.BLOG);
+router.push(ROUTES.BLOG_BY_ID.replace("[id]", "123"));
 ```
 
-Generates:
-
-- `dist/index.js` - ES Module build
-- `dist/index.cjs` - CommonJS build
-
-### Type Check
-
-```bash
-npm run typecheck
-```
-
-### Link Locally
-
-```bash
-npm link
-```
-
-Now you can use `itgreen` command anywhere on your system during development.
-
-## 🏗️ Architecture
-
-### Tech Stack
-
-- **Language**: TypeScript 5.7+
-- **CLI Framework**: Commander.js
-- **Build Tool**: tsup
-- **Runtime**: Node.js 18+
-- **Module Format**: Dual ESM/CJS support
-- **CI/CD**: Semantic Release + GitHub Actions
-
-### Key Dependencies
-
-- `commander` - CLI framework
-- `webp-converter` - Image conversion engine
-- `chalk` - Terminal colors
-- `ora` - Progress spinners
-- `glob` - File pattern matching
-- `eta` - Template engine for code generation
-- `prettier` - Code formatting
-- `minimatch` - Glob pattern matching
-
-### Build Configuration
-
-The project uses `tsup` for building with the following setup:
-
-- Dual format output (ESM + CJS)
-- Shebang preservation for CLI
-- No minification for better debugging
-- Clean build directory on each build
-
-## 📝 Release Process
-
-This project uses [Semantic Release](https://semantic-release.gitbook.io/) for automated versioning and publishing:
-
-1. Commits follow [Conventional Commits](https://www.conventionalcommits.org/)
-2. On push to `main`, GitHub Actions:
-   - Analyzes commits
-   - Generates changelog
-   - Creates GitHub release
-   - Publishes to npm
-   - Updates version in package.json
-
-### Commit Convention
-
-```
-feat: add new feature
-fix: bug fix
-docs: documentation changes
-chore: maintenance tasks
-```
-
-## 🗺️ Roadmap
-
-Future commands planned:
-
-- `gen:api` - Generate API functions/types/React Query hooks from Swagger
-- `gen:icon` - Generate Chakra UI Icon components from SVG files
-- `gen:font` - Generate Next.js Local Font configurations
-- `gen:route` - Generate route path objects from Pages directory
-- `gen:source` - Generate Page/API templates
-
-## 📄 License
+## 📄 라이센스
 
 MIT © [smu06030](https://github.com/smu06030)
 
-## 🤝 Contributing
+## 🔗 링크
 
-Contributions, issues and feature requests are welcome!
-
-Feel free to check [issues page](https://github.com/smu06030/itgreen-cli/issues).
-
-## 🔗 Links
-
-- [npm Package](https://www.npmjs.com/package/@smu06030/itgreen-cli)
-- [GitHub Repository](https://github.com/smu06030/itgreen-cli)
-- [Changelog](./CHANGELOG.md)
+- [GitHub 저장소](https://github.com/smu06030/itgreen-cli)
+- [npm 패키지](https://www.npmjs.com/package/@smu06030/itgreen-cli)
+- [이슈 제보](https://github.com/smu06030/itgreen-cli/issues)
