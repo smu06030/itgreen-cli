@@ -110,6 +110,8 @@ export function createDefaultConfig(): ItgreenConfig {
         "error.tsx",
         "not-found.tsx",
         "template.tsx",
+        "_document.tsx",
+        "_app.tsx",
       ],
       includingPattern: ["**/*.tsx"],
     },

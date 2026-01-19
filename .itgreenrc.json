@@ -23,7 +23,9 @@
       "loading.tsx",
       "error.tsx",
       "not-found.tsx",
-      "template.tsx"
+      "template.tsx",
+      "_document.tsx",
+      "_app.tsx"
     ],
     "includingPattern": ["**/*.tsx"]
   }
