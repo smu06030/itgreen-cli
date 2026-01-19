@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/smu06030/itgreen-cli/compare/v1.5.0...v1.6.0) (2026-01-19)
+
+
+### Features
+
+* trigger automated deployment with gen:route and gen:img commands ([201d9dd](https://github.com/smu06030/itgreen-cli/commit/201d9dd257d0cc782a616c660e939de9b6a9822c))
+
 # [1.5.0](https://github.com/smu06030/itgreen-cli/compare/v1.4.0...v1.5.0) (2026-01-19)
 
 
