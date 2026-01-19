@@ -89,7 +89,7 @@ export function createDefaultConfig(): ItgreenConfig {
       inputPath: "public/images",
       outputPath: "public/webp",
       quality: 80,
-      includePatterns: ["*.{png,jpg,jpeg,webp,PNG,JPG,JPEG,WEBP}"],
+      includePatterns: ["**/*.{png,jpg,jpeg,webp,PNG,JPG,JPEG,WEBP}"],
       excludePatterns: ["**/node_modules/**"],
     },
     genImg: {

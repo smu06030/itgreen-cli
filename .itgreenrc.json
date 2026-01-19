@@ -1,22 +1,22 @@
 {
   "webp": {
-    "inputPath": "public/images",
-    "outputPath": "public/webp",
+    "inputPath": "test-images/images",
+    "outputPath": "test-output/webp",
     "quality": 80,
-    "includePatterns": ["*.{png,jpg,jpeg,webp,PNG,JPG,JPEG,WEBP}"],
+    "includePatterns": ["**/*.{png,jpg,jpeg,webp,PNG,JPG,JPEG,WEBP}"],
     "excludePatterns": ["**/node_modules/**"]
   },
   "genImg": {
-    "inputPath": "test-images",
-    "outputPath": "test-output/images.ts",
-    "displayName": "TEST_IMAGES",
+    "inputPath": "public/images",
+    "outputPath": "src/generated/path/images.ts",
+    "displayName": "IMAGES",
     "basePath": "/",
     "includingPattern": ["*.jpg", "*.png", "*.svg", "*.jpeg", "*.webp"],
-    "ignoredPattern": ["*node_module*"]
+    "ignoredPattern": ["**/node_modules/**"]
   },
   "genRoute": {
-    "inputPath": "test-routes/pages",
-    "outputPath": "test-output/routes.ts",
+    "inputPath": "src/pages",
+    "outputPath": "src/generated/path/routes.ts",
     "displayName": "ROUTES",
     "ignoredPattern": [
       "layout.tsx",
