@@ -36,9 +36,6 @@ coverage/
 test-output/
 test-images/
 
-# Agent
-.agent/
-
 # NPM
 .npm
 .eslintcache
