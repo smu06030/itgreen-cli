@@ -22,7 +22,7 @@ const DEFAULT_CONFIG: GenImgConfig = {
  * 사용자 설정을 기본 설정과 병합
  */
 function getImageConfig(
-  userConfig: Partial<GenImgConfig>
+  userConfig: Partial<GenImgConfig>,
 ): Required<GenImgConfig> {
   return {
     ...DEFAULT_CONFIG,
@@ -48,7 +48,7 @@ async function prettierString(code: string): Promise<string> {
  * 이미지 객체 TypeScript 파일 생성 메인 함수
  */
 export async function generateImageObj(
-  userConfig: Partial<GenImgConfig>
+  userConfig: Partial<GenImgConfig>,
 ): Promise<void> {
   // 1. 기본 설정과 병합
   const config = getImageConfig(userConfig);

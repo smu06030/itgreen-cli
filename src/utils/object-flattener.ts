@@ -8,7 +8,7 @@ export interface FlattenOptions {
  */
 export function flatObject(
   obj: Record<string, any>,
-  options: FlattenOptions
+  options: FlattenOptions,
 ): Record<string, any> {
   const result: Record<string, any> = {};
 

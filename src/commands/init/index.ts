@@ -36,7 +36,7 @@ export function registerInitCommands(program: Command): void {
       } catch (error) {
         spinner.fail("Failed to create config file");
         logger.error(
-          `Error: ${error instanceof Error ? error.message : String(error)}`
+          `Error: ${error instanceof Error ? error.message : String(error)}`,
         );
         process.exit(1);
       }

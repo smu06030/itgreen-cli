@@ -15,7 +15,7 @@ export function registerConvertCommands(program: Command): void {
       // 설정 파일 존재 여부 확인
       if (!configExists()) {
         logger.error(
-          'Config file not found. Please run "init" command first to create a config file.'
+          'Config file not found. Please run "init" command first to create a config file.',
         );
         process.exit(1);
       }
@@ -41,7 +41,7 @@ export function registerConvertCommands(program: Command): void {
         await convertToWebp(config.webp);
       } catch (error) {
         logger.error(
-          `Error: ${error instanceof Error ? error.message : String(error)}`
+          `Error: ${error instanceof Error ? error.message : String(error)}`,
         );
         process.exit(1);
       }

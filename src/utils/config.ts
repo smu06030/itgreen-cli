@@ -39,7 +39,7 @@ export function loadConfig(): ItgreenConfig {
     throw new Error(
       `Failed to parse config file: ${
         error instanceof Error ? error.message : String(error)
-      }`
+      }`,
     );
   }
 }

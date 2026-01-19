@@ -15,7 +15,7 @@ export function toSnakeUpperCase(str: string): string {
  * 중첩된 객체 구조에서 빈 객체를 제거
  */
 export function removeEmptyObject<T extends Record<string, any>>(
-  obj: T
+  obj: T,
 ): Partial<T> {
   const result: any = {};
 

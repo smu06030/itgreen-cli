@@ -14,7 +14,7 @@ webp.grant_permission();
  * 설정을 사용하여 PNG/JPG 파일을 WebP 형식으로 변환
  */
 export async function convertToWebp(
-  config: WebpConfig
+  config: WebpConfig,
 ): Promise<ConvertResult> {
   const {
     inputPath,
@@ -69,7 +69,7 @@ export async function convertToWebp(
       const inputFilePath = path.join(inputPath, file);
       const outputFilePath = path.join(
         outputPath,
-        changeExtension(file, "webp")
+        changeExtension(file, "webp"),
       );
 
       // 출력 하위 디렉토리 존재 확인
@@ -79,19 +79,19 @@ export async function convertToWebp(
       }
 
       const convertSpinner = ora(
-        `[${i + 1}/${uniqueFiles.length}] Converting ${fileName}...`
+        `[${i + 1}/${uniqueFiles.length}] Converting ${fileName}...`,
       ).start();
 
       try {
         await webp.cwebp(inputFilePath, outputFilePath, `-q ${quality}`);
         convertSpinner.succeed(
-          `${fileName} → ${path.basename(outputFilePath)}`
+          `${fileName} → ${path.basename(outputFilePath)}`,
         );
         result.success.push(file);
       } catch (error) {
         convertSpinner.fail(`${fileName} conversion failed`);
         logger.error(
-          `Error: ${error instanceof Error ? error.message : String(error)}`
+          `Error: ${error instanceof Error ? error.message : String(error)}`,
         );
         result.failed.push(file);
       }
@@ -100,7 +100,7 @@ export async function convertToWebp(
     // 요약
     logger.log("");
     logger.success(
-      `✨ Conversion complete: ${result.success.length} succeeded`
+      `✨ Conversion complete: ${result.success.length} succeeded`,
     );
     if (result.failed.length > 0) {
       logger.error(`❌ Conversion failed: ${result.failed.length}`);
@@ -110,7 +110,7 @@ export async function convertToWebp(
   } catch (error) {
     spinner.fail("Error during conversion");
     logger.error(
-      `Error: ${error instanceof Error ? error.message : String(error)}`
+      `Error: ${error instanceof Error ? error.message : String(error)}`,
     );
     process.exit(1);
   }

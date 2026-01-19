@@ -17,8 +17,8 @@ async function genImgAction() {
     if (!config.genImg) {
       spinner.fail(
         chalk.red(
-          "No gen:img configuration found in .itgreenrc.json. Run 'itgreen init' to create a config file."
-        )
+          "No gen:img configuration found in .itgreenrc.json. Run 'itgreen init' to create a config file.",
+        ),
       );
       process.exit(1);
     }
@@ -28,8 +28,8 @@ async function genImgAction() {
 
     spinner.succeed(
       chalk.green(
-        `✨ Successfully generated image paths at ${config.genImg.outputPath || "src/generated/images.ts"}`
-      )
+        `✨ Successfully generated image paths at ${config.genImg.outputPath || "src/generated/images.ts"}`,
+      ),
     );
   } catch (error) {
     spinner.fail(chalk.red("Failed to generate image paths"));

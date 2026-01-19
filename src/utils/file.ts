@@ -7,7 +7,7 @@ import * as path from "path";
  */
 export async function findFiles(
   pattern: string,
-  options?: { cwd?: string; recursive?: boolean }
+  options?: { cwd?: string; recursive?: boolean },
 ): Promise<string[]> {
   const globPattern = options?.recursive ? `**/${pattern}` : pattern;
 

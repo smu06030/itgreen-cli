@@ -45,7 +45,7 @@ function checkFileAccess(options: {
  */
 export function convertFilePathToObject(
   basePath: string,
-  options: ConvertOptions
+  options: ConvertOptions,
 ): Record<string, any> {
   const result: Record<string, any> = {};
   const { includingPattern, ignoredPattern, formatKey, formatValue } = options;

@@ -3,7 +3,7 @@ declare module "webp-converter" {
   export function cwebp(
     input: string,
     output: string,
-    options: string
+    options: string,
   ): Promise<string>;
   export default {
     grant_permission,
