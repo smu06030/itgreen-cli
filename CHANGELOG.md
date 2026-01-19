@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/smu06030/itgreen-cli/compare/v1.6.0...v1.7.0) (2026-01-19)
+
+
+### Features
+
+* Introduce default configurations for image and route generation, and update the `init` command to always overwrite existing config files. ([99be9a1](https://github.com/smu06030/itgreen-cli/commit/99be9a1a69fbf7aa14f25a33f0c497a4932e8dc5))
+
 # [1.6.0](https://github.com/smu06030/itgreen-cli/compare/v1.5.0...v1.6.0) (2026-01-19)
 
 
