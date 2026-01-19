@@ -11,7 +11,7 @@ import type { GenImgConfig, ImageObject } from "../../types/gen-img.js";
 // 기본 설정
 const DEFAULT_CONFIG: GenImgConfig = {
   inputPath: "public",
-  outputPath: "src/generated/images.ts",
+  outputPath: "src/generated/path/images.ts",
   displayName: "IMAGES",
   basePath: "/",
   includingPattern: ["*.jpg", "*.png", "*.svg", "*.jpeg", "*.webp"],
