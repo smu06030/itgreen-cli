@@ -4,12 +4,12 @@ import { minimatch } from "minimatch";
 import { toSnakeUpperCase, removeEmptyObject } from "./format.js";
 import type { FileInfo, ImageObject } from "../types/gen-img.js";
 
-export interface ConvertOptions {
+export interface ConvertOptions<T = ImageObject> {
   includingPattern: string[];
   ignoredPattern: string[];
   basePath: string;
   formatKey?: (filename: string) => string;
-  formatValue: (info: FileInfo) => ImageObject;
+  formatValue: (info: FileInfo) => T;
 }
 
 /**
@@ -43,9 +43,9 @@ function checkFileAccess(options: {
 /**
  * 파일 경로를 재귀적으로 중첩된 객체 구조로 변환
  */
-export function convertFilePathToObject(
+export function convertFilePathToObject<T = ImageObject>(
   basePath: string,
-  options: ConvertOptions,
+  options: ConvertOptions<T>,
 ): Record<string, any> {
   const result: Record<string, any> = {};
   const { includingPattern, ignoredPattern, formatKey, formatValue } = options;
