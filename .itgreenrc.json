@@ -13,5 +13,18 @@
     "basePath": "/",
     "includingPattern": ["*.jpg", "*.png", "*.svg", "*.jpeg", "*.webp"],
     "ignoredPattern": ["*node_module*"]
+  },
+  "genRoute": {
+    "inputPath": "test-routes/pages",
+    "outputPath": "test-output/routes.ts",
+    "displayName": "ROUTES",
+    "ignoredPattern": [
+      "layout.tsx",
+      "loading.tsx",
+      "error.tsx",
+      "not-found.tsx",
+      "template.tsx"
+    ],
+    "includingPattern": ["**/*.tsx"]
   }
 }
