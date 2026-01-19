@@ -1,3 +1,17 @@
+# [1.3.0](https://github.com/smu06030/itgreen-cli/compare/v1.2.0...v1.3.0) (2026-01-19)
+
+
+### Bug Fixes
+
+* resolve TypeScript module export error for webp-converter types ([475c0bd](https://github.com/smu06030/itgreen-cli/commit/475c0bd71c60da604cebc7f2eb606c0453b1011d))
+
+
+### Features
+
+* add GenRouteConfig type definitions ([6292d63](https://github.com/smu06030/itgreen-cli/commit/6292d63d8bb5751afe955e5c451ef52df3c7ec36))
+* implement route path generation for Next.js Page Router and App Router ([49409de](https://github.com/smu06030/itgreen-cli/commit/49409de810859a9687458e282ad31f02b4742246))
+* register gen:route CLI command ([8605984](https://github.com/smu06030/itgreen-cli/commit/860598413cc550058f4a5b23fb356484ce00dbb1))
+
 # [1.2.0](https://github.com/smu06030/itgreen-cli/compare/v1.1.0...v1.2.0) (2025-12-07)
 
 
