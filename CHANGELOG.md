@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/smu06030/itgreen-cli/compare/v1.4.0...v1.5.0) (2026-01-19)
+
+
+### Features
+
+* gen:route publish ([bcf3419](https://github.com/smu06030/itgreen-cli/commit/bcf3419add89c2a24874ac5fe6d7775440310905))
+
 # [1.4.0](https://github.com/smu06030/itgreen-cli/compare/v1.3.0...v1.4.0) (2026-01-19)
 
 
