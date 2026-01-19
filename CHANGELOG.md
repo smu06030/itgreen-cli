@@ -1,3 +1,10 @@
+# [1.4.0](https://github.com/smu06030/itgreen-cli/compare/v1.3.0...v1.4.0) (2026-01-19)
+
+
+### Features
+
+* gen:route create ([72a7a2f](https://github.com/smu06030/itgreen-cli/commit/72a7a2f023f9cd79de743c286f9daa5f8945d65f))
+
 # [1.3.0](https://github.com/smu06030/itgreen-cli/compare/v1.2.0...v1.3.0) (2026-01-19)
 
 
