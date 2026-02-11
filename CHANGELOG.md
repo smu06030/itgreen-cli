@@ -1,3 +1,11 @@
+# [1.10.0](https://github.com/smu06030/itgreen-cli/compare/v1.9.0...v1.10.0) (2026-02-11)
+
+
+### Features
+
+* .itgreenrc.json에서 itgreen.config.js로 설정 파일 마이그레이션 ([33be90f](https://github.com/smu06030/itgreen-cli/commit/33be90f604722acdf3f406a9b543f83799f07e8c))
+* gen:api Swagger API 코드 자동 생성 기능 추가 ([39a334f](https://github.com/smu06030/itgreen-cli/commit/39a334ff34f65c0c8994b082aebb6cea851e6002))
+
 # [1.9.0](https://github.com/smu06030/itgreen-cli/compare/v1.8.0...v1.9.0) (2026-01-19)
 
 
