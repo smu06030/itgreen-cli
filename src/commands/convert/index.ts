@@ -22,7 +22,7 @@ export function registerConvertCommands(program: Command): void {
 
       try {
         // 설정 로드
-        const config = loadConfig();
+        const config = await loadConfig();
 
         if (!config.webp) {
           logger.error("WebP configuration not found in config file.");

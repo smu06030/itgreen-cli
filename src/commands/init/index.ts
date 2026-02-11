@@ -1,8 +1,8 @@
+import { writeFileSync } from "fs";
 import { Command } from "commander";
 import {
   configExists,
-  saveConfig,
-  createDefaultConfig,
+  createDefaultConfigContent,
   getConfigPath,
 } from "../../utils/config.js";
 import { logger } from "../../utils/logger.js";
@@ -22,14 +22,14 @@ export function registerInitCommands(program: Command): void {
           spinner.warn("Config file already exists. Overwriting...");
         }
 
-        const config = createDefaultConfig();
-        saveConfig(config);
+        const content = createDefaultConfigContent();
+        writeFileSync(configPath, content, "utf-8");
 
         spinner.succeed("Config file created successfully!");
         logger.success(`\nConfig file created at: ${configPath}`);
-        logger.log("\nDefault configuration:");
-        logger.log(JSON.stringify(config, null, 2));
-        logger.log("\nYou can now edit the config file and run commands.");
+        logger.log(
+          "\nYou can now edit the config file and run commands.",
+        );
       } catch (error) {
         spinner.fail("Failed to create config file");
         logger.error(
