@@ -15,6 +15,7 @@ export interface ItgreenConfig {
   webp?: WebpConfig;
   genImg?: Partial<import("./gen-img.js").GenImgConfig>;
   genRoute?: Partial<import("./gen-route.js").GenRouteConfig>;
+  genApi?: Partial<import("./gen-api.js").GenApiConfig>;
 }
 
 export interface ConfigValidationResult {
