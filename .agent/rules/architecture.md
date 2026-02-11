@@ -62,7 +62,7 @@ itgreen-cli/
 ├── package.json              # Project metadata & dependencies
 ├── tsconfig.json             # TypeScript configuration
 ├── tsup.config.ts            # Build configuration
-├── .itgreenrc.json           # CLI configuration file
+├── itgreen.config.js           # CLI configuration file
 └── README.md                 # Project documentation
 ```
 
@@ -72,7 +72,7 @@ itgreen-cli/
 
 ### 1. init - Configuration Initialization
 
-- **Purpose**: Create .itgreenrc.json configuration file
+- **Purpose**: Create itgreen.config.js configuration file
 - **Location**: src/commands/init/index.ts
 - **Config Management**: Uses utils/config.ts
 
@@ -81,7 +81,7 @@ itgreen-cli/
 - **Purpose**: Convert PNG/JPG images to WebP format
 - **Location**: src/commands/convert/webp.ts
 - **Dependencies**: webp-converter, glob
-- **Configuration**: Reads from .itgreenrc.json → webp section
+- **Configuration**: Reads from itgreen.config.js → webp section
 
 ### 3. gen:img - TypeScript Image Path Generator
 
@@ -100,7 +100,7 @@ itgreen-cli/
   - utils/object-flattener.ts: Nested object → flat object conversion
   - utils/format.ts: String formatting (SNAKE_UPPER_CASE)
 
-- **Configuration**: Reads from .itgreenrc.json → genImg section
+- **Configuration**: Reads from itgreen.config.js → genImg section
 
 ---
 
@@ -124,6 +124,6 @@ itgreen-cli/
 
 ### Configuration
 
-- ✅ .itgreenrc.json을 통한 중앙화된 설정 관리
+- ✅ itgreen.config.js을 통한 중앙화된 설정 관리
 - ✅ 각 명령어는 자체 설정 섹션 보유
 - ✅ 기본값 제공으로 사용자 편의성 향상
