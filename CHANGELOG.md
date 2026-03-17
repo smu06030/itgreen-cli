@@ -1,3 +1,10 @@
+## [1.10.1](https://github.com/smu06030/itgreen-cli/compare/v1.10.0...v1.10.1) (2026-03-17)
+
+
+### Bug Fixes
+
+* gen api 타입 생성 안정화 ([8aad2e7](https://github.com/smu06030/itgreen-cli/commit/8aad2e730d17130595f5bb9ae08ebd90ebd5011b))
+
 # [1.10.0](https://github.com/smu06030/itgreen-cli/compare/v1.9.0...v1.10.0) (2026-02-11)
 
 
