@@ -1,13 +1,14 @@
 import { mkdirSync, writeFileSync } from "fs";
 import { resolve } from "path";
 import prettier from "prettier";
+import organizeImportsPlugin from "prettier-plugin-organize-imports";
 import { TYPE_FILE, UTIL_FILE, QUERY_HOOK_INDICATOR } from "../gen-api.data.js";
 import { splitHookContents } from "./split-hook-contents.js";
 
 async function formatAndWrite(filePath: string, content: string) {
   const formatted = await prettier.format(content, {
     parser: "babel-ts",
-    plugins: ["prettier-plugin-organize-imports"],
+    plugins: [organizeImportsPlugin],
   });
   writeFileSync(filePath, formatted);
 
@@ -30,7 +31,10 @@ interface WriteOptions {
   outputPath: string;
 }
 
-export async function writeSwaggerApiFile({ output, outputPath }: WriteOptions) {
+export async function writeSwaggerApiFile({
+  output,
+  outputPath,
+}: WriteOptions) {
   for (const file of output.files) {
     const name = file.fileName + file.fileExtension;
     const content = file.fileContent;
@@ -59,12 +63,12 @@ export async function writeSwaggerApiFile({ output, outputPath }: WriteOptions) 
     if (hasHookIndicator) {
       const { apiContents, hookContents } = splitHookContents(
         moduleName,
-        content,
+        content
       );
       await formatAndWrite(resolve(dir, `${moduleName}.api.ts`), apiContents);
       await formatAndWrite(
         resolve(dir, `${moduleName}.query.ts`),
-        hookContents,
+        hookContents
       );
       continue;
     }

@@ -12,7 +12,7 @@ interface SwaggerApiOutput {
 }
 
 export async function getSwaggerApiFile(
-  config: GenApiConfig,
+  config: GenApiConfig
 ): Promise<SwaggerApiOutput> {
   const isUrl =
     config.swaggerSchemaUrl.startsWith("http://") ||
@@ -24,6 +24,10 @@ export async function getSwaggerApiFile(
     modular: true,
     moduleNameFirstTag: true,
     extractEnums: true,
+    extractingOptions: {
+      // enum 이름 뒤에 Enum을 제거
+      enumNameResolver: (name: string) => name.replace(/Enum$/, ""),
+    },
     addReadonly: true,
     unwrapResponseData: true,
     httpClientType: "axios",
