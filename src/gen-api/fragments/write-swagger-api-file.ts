@@ -1,19 +1,12 @@
 import { mkdirSync, writeFileSync } from "fs";
 import { resolve } from "path";
 import prettier from "prettier";
-import organizeImportsPlugin from "prettier-plugin-organize-imports";
 import { TYPE_FILE, UTIL_FILE, QUERY_HOOK_INDICATOR } from "../gen-api.data.js";
 import { splitHookContents } from "./split-hook-contents.js";
 
 async function formatAndWrite(filePath: string, content: string) {
-  const formatted = await prettier.format(content, {
-    parser: "babel-ts",
-    plugins: [organizeImportsPlugin],
-  });
+  const formatted = await prettier.format(content, { parser: "typescript" });
   writeFileSync(filePath, formatted);
-
-  const final = await prettier.format(formatted, { parser: "typescript" });
-  writeFileSync(filePath, final);
 }
 
 function writeRaw(filePath: string, content: string) {
