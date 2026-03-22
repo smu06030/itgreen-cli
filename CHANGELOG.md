@@ -1,3 +1,10 @@
+## [1.10.2](https://github.com/smu06030/itgreen-cli/compare/v1.10.1...v1.10.2) (2026-03-22)
+
+
+### Bug Fixes
+
+* gen-api import 정렬 충돌 제거 ([c444ab9](https://github.com/smu06030/itgreen-cli/commit/c444ab9b243f3f00e31d02e7e6d26847fc33e77c))
+
 ## [1.10.1](https://github.com/smu06030/itgreen-cli/compare/v1.10.0...v1.10.1) (2026-03-17)
 
 
