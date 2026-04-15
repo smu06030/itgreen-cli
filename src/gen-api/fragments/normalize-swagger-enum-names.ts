@@ -47,12 +47,14 @@ export function normalizeSwaggerEnumNames<T>(schema: T): T {
 
     visited.add(value);
 
+    const nestedValues = Object.values(value);
+
     const resolvedEnumNames = resolveEnumNames(value);
     if (resolvedEnumNames) {
       value["x-enumNames"] = resolvedEnumNames;
     }
 
-    for (const nestedValue of Object.values(value)) {
+    for (const nestedValue of nestedValues) {
       visit(nestedValue);
     }
   };
