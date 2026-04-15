@@ -6,6 +6,7 @@ import {
   EXTRA_TEMPLATE_FOLDER,
   QUERY_HOOK_INDICATOR,
 } from "../gen-api.data.js";
+import { extractInlinePathEnums } from "./extract-inline-path-enums.js";
 import { normalizeSwaggerEnumNames } from "./normalize-swagger-enum-names.js";
 import { renameInlineRequestEnums } from "./rename-inline-request-enums.js";
 
@@ -50,6 +51,8 @@ export async function getSwaggerApiFile(
     ],
     hooks: {
       onInit: (currentConfig: Record<string, unknown>) => {
+        extractInlinePathEnums(currentConfig.swaggerSchema);
+        extractInlinePathEnums(currentConfig.originalSchema);
         normalizeSwaggerEnumNames(currentConfig.swaggerSchema);
         normalizeSwaggerEnumNames(currentConfig.originalSchema);
 
