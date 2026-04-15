@@ -1,3 +1,10 @@
+## [1.10.3](https://github.com/smu06030/itgreen-cli/compare/v1.10.2...v1.10.3) (2026-04-15)
+
+
+### Bug Fixes
+
+* CommonJS 프로젝트 설정 로드 지원 ([bbc6d5e](https://github.com/smu06030/itgreen-cli/commit/bbc6d5ebb45ca0f59f312c436dec1214d0d9a87b))
+
 ## [1.10.2](https://github.com/smu06030/itgreen-cli/compare/v1.10.1...v1.10.2) (2026-03-22)
 
 
