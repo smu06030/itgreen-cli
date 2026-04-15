@@ -1,3 +1,10 @@
+## [1.10.6](https://github.com/smu06030/itgreen-cli/compare/v1.10.5...v1.10.6) (2026-04-15)
+
+
+### Bug Fixes
+
+* inline path parameter enum 무한 루프 해결 ([af57643](https://github.com/smu06030/itgreen-cli/commit/af57643854a5466eddcd88f02123d8aa34c5e910))
+
 ## [1.10.5](https://github.com/smu06030/itgreen-cli/compare/v1.10.4...v1.10.5) (2026-04-15)
 
 
