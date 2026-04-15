@@ -1,3 +1,10 @@
+## [1.10.5](https://github.com/smu06030/itgreen-cli/compare/v1.10.4...v1.10.5) (2026-04-15)
+
+
+### Bug Fixes
+
+* normalizeSwaggerEnumNames 무한 루프 수정 ([ed9df33](https://github.com/smu06030/itgreen-cli/commit/ed9df33547df8e6d3c00a775c21b0ceae5097829))
+
 ## [1.10.4](https://github.com/smu06030/itgreen-cli/compare/v1.10.3...v1.10.4) (2026-04-15)
 
 
