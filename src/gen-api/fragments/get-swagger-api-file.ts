@@ -6,6 +6,8 @@ import {
   EXTRA_TEMPLATE_FOLDER,
   QUERY_HOOK_INDICATOR,
 } from "../gen-api.data.js";
+import { normalizeSwaggerEnumNames } from "./normalize-swagger-enum-names.js";
+import { renameInlineRequestEnums } from "./rename-inline-request-enums.js";
 
 interface SwaggerApiOutput {
   files: { fileName: string; fileExtension: string; fileContent: string }[];
@@ -47,10 +49,20 @@ export async function getSwaggerApiFile(
       },
     ],
     hooks: {
-      onPrepareConfig: (defaultConfig: Record<string, unknown>) => ({
-        ...defaultConfig,
-        myConfig: { QUERY_HOOK_INDICATOR, ...config },
-      }),
+      onInit: (currentConfig: Record<string, unknown>) => {
+        normalizeSwaggerEnumNames(currentConfig.swaggerSchema);
+        normalizeSwaggerEnumNames(currentConfig.originalSchema);
+
+        return currentConfig;
+      },
+      onPrepareConfig: (defaultConfig: Record<string, unknown>) => {
+        renameInlineRequestEnums(defaultConfig);
+
+        return {
+          ...defaultConfig,
+          myConfig: { QUERY_HOOK_INDICATOR, ...config },
+        };
+      },
     },
   };
 
