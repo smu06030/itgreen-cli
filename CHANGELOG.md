@@ -1,3 +1,10 @@
+## [1.10.4](https://github.com/smu06030/itgreen-cli/compare/v1.10.3...v1.10.4) (2026-04-15)
+
+
+### Bug Fixes
+
+* inline request enum 생성 보정 ([7b8e8cb](https://github.com/smu06030/itgreen-cli/commit/7b8e8cbc7ba3894cac62b0b75bcf13fa5253c052))
+
 ## [1.10.3](https://github.com/smu06030/itgreen-cli/compare/v1.10.2...v1.10.3) (2026-04-15)
 
 
