@@ -1,5 +1,5 @@
-import { existsSync } from "fs";
-import { join } from "path";
+import { existsSync, readFileSync, rmSync, writeFileSync } from "fs";
+import { dirname, extname, join } from "path";
 import { pathToFileURL } from "url";
 import type {
   ItgreenConfig,
@@ -23,6 +23,51 @@ export function configExists(): boolean {
   return existsSync(getConfigPath());
 }
 
+function shouldLoadFromTempMjs(configPath: string): boolean {
+  if (extname(configPath) !== ".js") {
+    return false;
+  }
+
+  const packageJsonPath = join(process.cwd(), "package.json");
+
+  if (!existsSync(packageJsonPath)) {
+    return false;
+  }
+
+  const packageJson = JSON.parse(readFileSync(packageJsonPath, "utf8")) as {
+    type?: string;
+  };
+
+  if (packageJson.type === "module") {
+    return false;
+  }
+
+  const configSource = readFileSync(configPath, "utf8");
+
+  return /\bexport\s+default\b|\bimport\s/.test(configSource);
+}
+
+async function importConfigModule(configPath: string) {
+  if (!shouldLoadFromTempMjs(configPath)) {
+    const fileUrl = pathToFileURL(configPath).href;
+    return import(`${fileUrl}?t=${Date.now()}`);
+  }
+
+  const tempConfigPath = join(
+    dirname(configPath),
+    `.itgreen.config.${process.pid}.${Date.now()}.mjs`,
+  );
+
+  writeFileSync(tempConfigPath, readFileSync(configPath, "utf8"));
+
+  try {
+    const fileUrl = pathToFileURL(tempConfigPath).href;
+    return await import(`${fileUrl}?t=${Date.now()}`);
+  } finally {
+    rmSync(tempConfigPath, { force: true });
+  }
+}
+
 /**
  * 설정 파일 로드
  */
@@ -34,8 +79,7 @@ export async function loadConfig(): Promise<ItgreenConfig> {
   }
 
   try {
-    const fileUrl = pathToFileURL(configPath).href;
-    const module = await import(`${fileUrl}?t=${Date.now()}`);
+    const module = await importConfigModule(configPath);
     return module.default as ItgreenConfig;
   } catch (error) {
     throw new Error(
